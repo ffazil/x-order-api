@@ -1,6 +1,7 @@
 package com.x.order.order;
 
 import com.x.order.AbstractEntity;
+import com.x.order.product.Product;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -12,7 +13,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public class OrderLine extends AbstractEntity{
 
-    private final String product;
+    private final Product product;
     private final Double unitPrice;
     private final int quantity;
 
