@@ -3,6 +3,7 @@ package com.x.order.product;
 import com.x.order.AbstractEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 
@@ -12,12 +13,9 @@ import javax.persistence.Entity;
 @Entity
 @Getter
 @AllArgsConstructor
+@NoArgsConstructor(force = true)
 public class Product extends AbstractEntity {
 
     private final String name;
     private final String description;
-
-    public Product() {
-        this(null, null);
-    }
 }
