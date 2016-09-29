@@ -48,8 +48,7 @@ public class CustomerRepositoryTest {
     public void updatesCustomersEmail() throws NoSuchFieldException, IllegalAccessException{
         Customer suresh = saveCustomer();
         Assert.assertEquals("suresh.maurya1@gmail.com", suresh.getEmail());
-        Class<?> clazz = suresh.getClass();
-        Field field = clazz.getDeclaredField("email");
+        Field field = suresh.getClass().getDeclaredField("email");
         field.setAccessible(true);
         field.set(suresh, "test@gmail.com");
         suresh = customerRepository.save(suresh);

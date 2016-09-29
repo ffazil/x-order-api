@@ -16,7 +16,6 @@ public class CustomerInitializer {
 
     private final CustomerRepository customerRepository;
 
-    @Autowired
     public CustomerInitializer(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
 
