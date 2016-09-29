@@ -12,14 +12,20 @@ import static com.x.order.order.ProductFixture.product3;
 public class OrderLineFixture {
     public static OrderLine orderLine1(){
         Product p1 = product1();
-        return new OrderLine(p1,  3);
+        OrderLine o1 =  new OrderLine(p1,3);
+        o1.calculateSubTotal();
+        return o1;
     }
     public static OrderLine orderLine2(){
         Product p2 = product2();
-        return new OrderLine(p2, 3);
+        OrderLine o2 =  new OrderLine(p2,2);
+        o2.calculateSubTotal();
+        return o2;
     }
     public static OrderLine orderLine3(){
         Product p3 = product3();
-        return new OrderLine(p3,  3);
+        OrderLine o3 =  new OrderLine(p3,5);
+        o3.calculateSubTotal();
+        return o3;
     }
 }

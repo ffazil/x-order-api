@@ -24,13 +24,17 @@ public class OrderLine extends AbstractEntity{
     private final Product product;
     private final Double unitPrice;
     private final Integer quantity;
-    private final Double subtotal;
+    private Double subtotal;
 
     protected OrderLine(Product product, Integer quantity){
         this.product=product;
         this.unitPrice=product.getUnitPrice();
         this.quantity=quantity;
-        this.subtotal=product.getUnitPrice()*quantity;
     }
+
+    protected void calculateSubTotal(){
+        this.subtotal=this.unitPrice*this.quantity;
+    }
+
 
 }

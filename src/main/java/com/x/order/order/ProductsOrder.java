@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by khka on 9/29/2016.
@@ -22,12 +21,27 @@ import java.util.Set;
 public class ProductsOrder extends AbstractEntity {
 
     @OneToMany(cascade = CascadeType.ALL)
-    private final List<OrderLine> itemSet;
-    private final Double totalPrice;
+    private final List<OrderLine> productList;
+    private Double totalPrice;
     @OneToOne(cascade = CascadeType.ALL)
     private final Seller seller;
     @OneToOne(cascade = CascadeType.ALL)
     private final Customer customer;
     private final Date orderDate;
+
+    protected ProductsOrder(List<OrderLine> productList,Seller seller,Customer customer,Date orderDate){
+        this.productList=productList;
+        this.seller=seller;
+        this.customer=customer;
+        this.orderDate=orderDate;
+    }
+
+    public void calculateTotal(){
+        Double total = 0.0;
+        for(OrderLine item : this.productList){
+            total+=item.getSubtotal();
+        }
+        this.totalPrice=total;
+    }
 
 }
