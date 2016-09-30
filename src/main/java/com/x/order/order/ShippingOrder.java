@@ -18,20 +18,21 @@ import java.util.List;
 @Getter
 @NoArgsConstructor(force=true)
 @AllArgsConstructor
-public class ProductsOrder extends AbstractEntity {
+public class ShippingOrder extends AbstractEntity {
 
     @OneToMany(cascade = CascadeType.ALL)
-    private final List<OrderLine> productList;
+    private final List<OrderLine> orderLines;
     private Double totalPrice;
     @OneToOne(cascade = CascadeType.ALL)
     private final Seller seller;
     @OneToOne(cascade = CascadeType.ALL)
     private final Customer customer;
     private final Date orderDate;
+    @Enumerated(EnumType.ORDINAL)
     private OrderStatus status;
 
-    protected ProductsOrder(List<OrderLine> productList,Seller seller,Customer customer,Date orderDate){
-        this.productList=productList;
+    protected ShippingOrder(List<OrderLine> productList, Seller seller, Customer customer, Date orderDate){
+        this.orderLines =productList;
         this.seller=seller;
         this.customer=customer;
         this.orderDate=orderDate;
@@ -40,7 +41,7 @@ public class ProductsOrder extends AbstractEntity {
 
     public void calculateTotal(){
         Double total = 0.0;
-        for(OrderLine item : this.productList){
+        for(OrderLine item : this.orderLines){
             total+=item.getSubtotal();
         }
         this.totalPrice=total;
