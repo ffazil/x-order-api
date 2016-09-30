@@ -28,12 +28,14 @@ public class ProductsOrder extends AbstractEntity {
     @OneToOne(cascade = CascadeType.ALL)
     private final Customer customer;
     private final Date orderDate;
+    private OrderStatus status;
 
     protected ProductsOrder(List<OrderLine> productList,Seller seller,Customer customer,Date orderDate){
         this.productList=productList;
         this.seller=seller;
         this.customer=customer;
         this.orderDate=orderDate;
+        this.status=OrderStatus.Placed;
     }
 
     public void calculateTotal(){
@@ -42,6 +44,10 @@ public class ProductsOrder extends AbstractEntity {
             total+=item.getSubtotal();
         }
         this.totalPrice=total;
+    }
+
+    public void updateStatus( OrderStatus status){
+        this.status=status;
     }
 
 }

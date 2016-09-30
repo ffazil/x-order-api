@@ -1,7 +1,5 @@
 package com.x.order.order;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.fasterxml.jackson.databind.deser.std.DateDeserializers;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -52,6 +50,8 @@ public class OrderRepositoryTest {
         Assert.assertEquals(166389,testOrder.getTotalPrice().doubleValue(),4);
         Assert.assertNotNull(testOrder.getProductList());
         Assert.assertEquals(product1(), testOrder.getProductList().get(0).getProduct());
+        Assert.assertNotNull(testOrder.getStatus());
+        Assert.assertEquals(OrderStatus.Placed,testOrder.getStatus());
     }
     @Test
     public void persistsOrderLine() {
