@@ -18,7 +18,7 @@ public class ProductInitializer {
         this.productRepository = productRepository;
 
         if(productRepository.count() == 0){
-            Product product = new Product("Reservation", "Evening Reservation");
+            Product product = new Product("Reservation", "Evening Reservation",534.00);
             product = productRepository.save(product);
 
             log.info("Product saved - "+product.getName());

@@ -10,6 +10,8 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 
+import java.lang.reflect.Field;
+
 import static com.x.order.customer.CustomerFixture.*;
 
 /**
@@ -42,14 +44,16 @@ public class CustomerRepositoryTest {
         return suresh;
     }
 
-    /*@Test
-    public void updatesCustomersEmail(){
+    @Test
+    public void updatesCustomersEmail() throws NoSuchFieldException, IllegalAccessException{
         Customer suresh = saveCustomer();
-        suresh.setEmail("test@gmail.com");
+        Assert.assertEquals("suresh.maurya1@gmail.com", suresh.getEmail());
+        Field field = suresh.getClass().getDeclaredField("email");
+        field.setAccessible(true);
+        field.set(suresh, "test@gmail.com");
         suresh = customerRepository.save(suresh);
         Assert.assertEquals("test@gmail.com", suresh.getEmail());
-
-    }*/
+    }
 
 
 }
