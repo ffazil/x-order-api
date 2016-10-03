@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -30,31 +31,26 @@ public class ShippingOrderInitializer {
     private CustomerRepository customerRepository;
     private SellerRepository sellerRepository;
 
-    /*public ShippingOrderInitializer (ShippingOrderRepository shippingOrderRepository,ProductRepository productRepository,SellerRepository sellerRepository,CustomerRepository customerRepository){
+    public ShippingOrderInitializer(ShippingOrderRepository shippingOrderRepository,ProductRepository productRepository,SellerRepository sellerRepository,CustomerRepository customerRepository){
         this.shippingOrderRepository=shippingOrderRepository;
         this.productRepository = productRepository;
-        this.customerRepository = customerRepository;
         this.sellerRepository = sellerRepository;
-        if(shippingOrderRepository.count()==0){
-            new ProductInitializer(productRepository);
-            OrderLine o1 =  new OrderLine(productRepository.findOne(1L),3);
-            o1.calculateSubTotal();
-            new CustomerInitializer(customerRepository);
-            new SellerInitializer(sellerRepository);
-            List<OrderLine> orderLines = new ArrayList<OrderLine>();
-            orderLines.add(o1);
-            ShippingOrder shippingOrder = new ShippingOrder(orderLines,sellerRepository.findOne(1L),customerRepository.findOne(1L),new Date());
-            shippingOrder.calculateTotal();
-            shippingOrder = shippingOrderRepository.save(shippingOrder);
-            log.info("Added Order {}", shippingOrder.getStatus());
-        }
-    }*/
-    public ShippingOrderInitializer(ShippingOrderRepository shippingOrderRepository){
-        this.shippingOrderRepository=shippingOrderRepository;
+        this.customerRepository = customerRepository;
+
+
         Product product = new Product("Reservation", "Evening Reservation",534.00);
         Product product1 = new Product("laptop", "LaptopDesc",50000.00);
+
+        product = productRepository.save(product);
+        product1 = productRepository.save(product1);
+
+
         Customer customer = new Customer("Suresh", "Maurya", "suresh.maurya1@gmail.com");
+        customer = customerRepository.save(customer);
+
         Seller seller = new Seller("Gopal", "Nayak", "gopal.nayak@gmail.com","TAEDSD232");
+        seller = sellerRepository.save(seller);
+
         OrderLine o1 =  new OrderLine(product,3);
         o1.calculateSubTotal();
         OrderLine o2 = new OrderLine(product1, 2);

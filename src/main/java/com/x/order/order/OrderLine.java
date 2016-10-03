@@ -20,7 +20,7 @@ import javax.persistence.ManyToOne;
 @NoArgsConstructor(force = true)
 public class OrderLine extends AbstractEntity{
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private final Product product;
     private final Double unitPrice;
     private final Integer quantity;

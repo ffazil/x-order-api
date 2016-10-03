@@ -22,13 +22,17 @@ public class ShippingOrder extends AbstractEntity {
 
     @OneToMany(cascade = CascadeType.ALL)
     private final List<OrderLine> orderLines;
+
     private Double totalPrice;
-    @OneToOne(cascade = CascadeType.ALL)
+
+    @OneToOne
     private final Seller seller;
-    @OneToOne(cascade = CascadeType.ALL)
+
+    @OneToOne
     private final Customer customer;
+
     private final Date orderDate;
-    @Enumerated(EnumType.ORDINAL)
+
     private OrderStatus status;
 
     protected ShippingOrder(List<OrderLine> productList, Seller seller, Customer customer, Date orderDate){
